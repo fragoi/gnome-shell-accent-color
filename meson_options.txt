@@ -1,0 +1,5 @@
+option('shell-gir-dir',
+  type: 'string',
+  value: '/usr/share/gnome-shell',
+  description: 'Directory of the shell gir file'
+)

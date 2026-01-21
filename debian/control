@@ -1,0 +1,14 @@
+Source: gnome-shell-extension-accent-color
+Maintainer: Fra Goi <fragoidev@gmail.com>
+Section: misc
+Priority: optional
+Standards-Version: 4.5.0
+Build-Depends: debhelper-compat (= 13), meson,
+  libmutter-16-dev (>= 48),
+  gnome-shell (>= 48)
+
+Package: gnome-shell-extension-accent-color
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Allows to set a custom accent color in the gnome-shell
+ TODO: Need to add an extended description.

@@ -1,0 +1,8 @@
+{
+  "name": "Accent Color",
+  "description": "Allows to set a custom accent color",
+  "uuid": "accent-color@fragoi.github.com",
+  "shell-version": [
+    "48.7"
+  ]
+}

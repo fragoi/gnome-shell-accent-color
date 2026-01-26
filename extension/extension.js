@@ -28,9 +28,10 @@ function getThemeContext() {
  * and properly handles it, on the other hand directly
  * emitting the 'changed' event on the theme context
  * does not yeld to the same result.
+ * 
+ * @param {St.ThemeContext} context 
  */
-function emitThemeChanged() {
-  const context = getThemeContext();
+function emitThemeChanged(context) {
   const theme = context.get_theme();
   theme.emit('custom-stylesheets-changed');
 }
@@ -46,7 +47,7 @@ export default class MyExtension extends Extension {
     this._prevColor = prevColor;
 
     StAccentColor.set(context, color);
-    emitThemeChanged();
+    emitThemeChanged(context);
 
     log(`${NAME} enabled`);
   }
@@ -55,7 +56,7 @@ export default class MyExtension extends Extension {
     const context = getThemeContext();
 
     StAccentColor.set(context, this._prevColor);
-    emitThemeChanged();
+    emitThemeChanged(context);
 
     this._prevColor = null;
 

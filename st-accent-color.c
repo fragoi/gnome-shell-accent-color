@@ -11,6 +11,16 @@ struct _StThemeContext {
 };
 
 /**
+ * st_accent_color_get:
+ * @context: the context
+ *
+ * Returns: the accent color, free with cogl_color_free() when done.
+ */
+CoglColor *st_accent_color_get(StThemeContext *context) {
+  return cogl_color_copy(&context->accent_color);
+}
+
+/**
  * st_accent_color_set:
  * @context: the context
  * @color: the accent color

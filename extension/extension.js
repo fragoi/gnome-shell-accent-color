@@ -38,10 +38,17 @@ function emitThemeChanged(context) {
 
 export default class MyExtension extends Extension {
   enable() {
-    // const gsettings = this.getSettings(GSETTINGS_ID);
-
     const context = getThemeContext();
     const [prevColor] = context.get_accent_color();
+
+    /* consistency check, if this fails extension can be dangerous */
+    const checkColor = StAccentColor.get(context);
+    if (!(checkColor instanceof Cogl.Color && prevColor.equal(checkColor))) {
+      console.warn(`Color check failed, not changing accent color`);
+      return;
+    }
+
+    // const gsettings = this.getSettings(GSETTINGS_ID);
     const [, color] = Cogl.Color.from_string(COLOR);
 
     this._prevColor = prevColor;
@@ -53,6 +60,9 @@ export default class MyExtension extends Extension {
   }
 
   disable() {
+    if (!this._prevColor)
+      return;
+
     const context = getThemeContext();
 
     StAccentColor.set(context, this._prevColor);

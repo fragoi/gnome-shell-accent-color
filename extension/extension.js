@@ -49,7 +49,7 @@ export default class MyExtension extends Extension {
     StAccentColor.set(context, color);
     emitThemeChanged(context);
 
-    log(`${NAME} enabled`);
+    console.log(`${NAME} enabled`);
   }
 
   disable() {
@@ -60,6 +60,6 @@ export default class MyExtension extends Extension {
 
     this._prevColor = null;
 
-    log(`${NAME} disabled`);
+    console.log(`${NAME} disabled`);
   }
 }

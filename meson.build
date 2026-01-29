@@ -1,5 +1,5 @@
 project('gnome-shell-accent-color', 'c',
-  version: '0.1.0'
+  version: files('version')
 )
 
 api_version = '16'

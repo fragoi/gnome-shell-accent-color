@@ -7,6 +7,7 @@ api_version = '16'
 prefix = get_option('prefix')
 datadir = prefix / get_option('datadir')
 extensions_dir= datadir / 'gnome-shell' / 'extensions'
+doc_dir = datadir / 'doc'
 
 gnome = import('gnome')
 
@@ -61,16 +62,21 @@ gir = gnome.generate_gir(lib,
   install: true
 )
 
-## Script to generate documentation
-configure_file(
-  input: 'g-ir-doc-tool.sh.in',
-  output: 'g-ir-doc-tool.sh',
-  configuration: {
-    'output': meson.current_build_dir() / 'doc',
-    'shell_gir_dir': shell_gir_dir,
-    'mutter_gir_dir': libmutter.get_variable('girdir'),
-    'gir_file': gir[0].full_path()
-  }
+## Devdocs style documentation
+custom_target('devdocs',
+  command: [
+    'g-ir-doc-tool',
+    '--format=devdocs',
+    '--language=gjs',
+    '--output=@OUTPUT@',
+    '--add-include-path=' + shell_gir_dir,
+    '--add-include-path=' + libmutter.get_variable('girdir'),
+    '@INPUT@'
+  ],
+  input: gir[0],
+  output: 'devdocs',
+  install: true,
+  install_dir: doc_dir / 'libst-accent-color'
 )
 
 install_subdir('extension',

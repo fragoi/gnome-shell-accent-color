@@ -62,7 +62,7 @@ gir = gnome.generate_gir(lib,
 )
 
 ## Script to generate documentation
-g_ir_doc_tool = configure_file(
+configure_file(
   input: 'g-ir-doc-tool.sh.in',
   output: 'g-ir-doc-tool.sh',
   configuration: {

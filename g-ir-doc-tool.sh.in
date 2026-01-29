@@ -1,0 +1,7 @@
+#!/bin/sh
+
+g-ir-doc-tool --format=devdocs --language=gjs \
+  --output=@output@ \
+  --add-include-path=@shell_gir_dir@ \
+  --add-include-path=@mutter_gir_dir@ \
+  @gir_file@

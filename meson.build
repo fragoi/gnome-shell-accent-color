@@ -18,8 +18,10 @@ sources = [
   'st-accent-color.c'
 ]
 
+libmutter = dependency('libmutter-' + api_version)
+
 dependencies = [
-  dependency('libmutter-' + api_version)
+  libmutter
 ]
 
 c_args = ['-DG_LOG_DOMAIN="StAccentColor"']
@@ -57,6 +59,18 @@ gir = gnome.generate_gir(lib,
     include_directories(shell_gir_dir)
   ],
   install: true
+)
+
+## Script to generate documentation
+g_ir_doc_tool = configure_file(
+  input: 'g-ir-doc-tool.sh.in',
+  output: 'g-ir-doc-tool.sh',
+  configuration: {
+    'output': meson.current_build_dir() / 'doc',
+    'shell_gir_dir': shell_gir_dir,
+    'mutter_gir_dir': libmutter.get_variable('girdir'),
+    'gir_file': gir[0].full_path()
+  }
 )
 
 install_subdir('extension',

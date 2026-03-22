@@ -2,6 +2,11 @@
   "name": "Accent Color",
   "description": "Allows to set a custom accent color",
   "uuid": "accent-color@fragoi.github.com",
+  "session-modes": [
+    "user",
+    "unlock-dialog",
+    "gdm"
+  ],
   "shell-version": [
     "48"
   ]

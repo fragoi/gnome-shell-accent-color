@@ -1,5 +1,3 @@
-'use strict';
-
 import St from 'gi://St';
 import Cogl from 'gi://Cogl';
 import StAccentColor from 'gi://StAccentColor';
